@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cannabis Farm – Education Hub</title>
+  <meta name="description" content="Free cannabis education for growers and enthusiasts. Learn everything from germination to harvest — lighting, soil, nutrients, terpenes, curing and more. South Africa based, globally relevant." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: flex;
+      align-items: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(82,183,136,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute;
+      right: -60px; top: 50%;
+      transform: translateY(-50%);
+      width: 520px; height: 520px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-leaf);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green-leaf); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1.08;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--green-leaf); }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero .btn-outline { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85); }
+    .hero .btn-outline:hover { border-color: var(--green-leaf); color: var(--green-leaf); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    #topics { background: var(--section-alt); }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .topic-card {
+      background: var(--white); border-radius: 8px; padding: 2rem;
+      border: 1px solid rgba(45,106,79,0.1);
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      position: relative; overflow: hidden; display: block;
+    }
+    .topic-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--green-leaf); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .topic-card:hover { box-shadow: 0 8px 32px rgba(13,34,24,0.1); transform: translateY(-3px); border-color: rgba(82,183,136,0.25); }
+    .topic-card:hover::after { transform: scaleX(1); }
+    .topic-icon { width: 48px; height: 48px; background: var(--section-alt); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+    .topic-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-dark); }
+    .topic-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .topic-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.82rem; font-weight: 600; color: var(--green-mid); letter-spacing: 0.03em; text-transform: uppercase; }
+
+    #guide { background: var(--white); }
+    .guide-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .guide-step { display: flex; gap: 1.25rem; padding: 1.75rem; border-radius: 8px; border: 1px solid rgba(45,106,79,0.1); transition: border-color 0.2s; }
+    .guide-step:hover { border-color: rgba(82,183,136,0.35); }
+    .step-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: rgba(82,183,136,0.2); line-height: 1; flex-shrink: 0; width: 44px; transition: color 0.2s; }
+    .guide-step:hover .step-num { color: var(--green-leaf); }
+    .step-body h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+    #videos { background: var(--green-deep); color: var(--white); }
+    #videos .section-title { color: var(--white); }
+    #videos .section-sub { color: rgba(255,255,255,0.55); }
+    #videos .section-tag { color: var(--green-leaf); }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .video-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+    .video-embed { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+    .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-info { padding: 1.25rem; }
+    .video-info h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; line-height: 1.4; color: var(--white); }
+    .video-info p { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    .video-level { display: inline-block; margin-top: 0.75rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; background: rgba(82,183,136,0.18); color: var(--green-leaf); }
+
+    #glossary { background: var(--section-alt); }
+    .glossary-search-wrap { position: relative; max-width: 480px; margin-bottom: 2.5rem; }
+    .glossary-search { width: 100%; padding: 0.85rem 1.2rem 0.85rem 3rem; border: 1.5px solid rgba(45,106,79,0.2); border-radius: 6px; font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark); background: var(--white); transition: border-color 0.2s; outline: none; }
+    .glossary-search:focus { border-color: var(--green-leaf); }
+    .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+    .glossary-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .glossary-item { padding: 1.25rem 1.5rem; border-radius: 6px; border: 1px solid rgba(45,106,79,0.1); background: var(--white); display: flex; gap: 1.5rem; align-items: baseline; transition: border-color 0.2s; }
+    .glossary-item:hover { border-color: rgba(82,183,136,0.3); }
+    .glossary-term { font-weight: 700; font-size: 0.95rem; color: var(--green-mid); min-width: 140px; flex-shrink: 0; }
+    .glossary-def { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .guide-steps { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Cannabis Education Hub</div>
+      <h1>Grow <em>smarter.</em><br>Understand <em>deeper.</em></h1>
+      <p class="hero-sub">
+        From your first seed to the science behind terpenes — straightforward, honest cannabis education for growers and enthusiasts at every level.
+      </p>
+      <div class="hero-actions">
+        <a href="#guide" class="btn-primary">Start Learning</a>
+        <a href="#topics" class="btn-outline">Browse Topics</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">12+</div><div class="stat-label">Topic Areas</div></div>
+        <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+        <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
+      </div>
+    </div>
+    <svg class="hero-grid" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="250" cy="250" r="200" stroke="white" stroke-width="1"/>
+      <circle cx="250" cy="250" r="140" stroke="white" stroke-width="1"/>
+      <circle cx="250" cy="250" r="80" stroke="white" stroke-width="1"/>
+      <line x1="50" y1="250" x2="450" y2="250" stroke="white" stroke-width="1"/>
+      <line x1="250" y1="50" x2="250" y2="450" stroke="white" stroke-width="1"/>
+      <line x1="109" y1="109" x2="391" y2="391" stroke="white" stroke-width="1"/>
+      <line x1="391" y1="109" x2="109" y2="391" stroke="white" stroke-width="1"/>
+    </svg>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics">
+    <div class="section-tag">What You'll Learn</div>
+    <h2 class="section-title">All the topics that matter.</h2>
+    <p class="section-sub">Every area of cannabis knowledge — explained clearly, built for real growers and curious minds alike. Click any topic to read the full guide.</p>
+    <div class="topics-grid reveal">
+      <a href="topics/getting-started.html" class="topic-card"><div class="topic-icon">🌱</div><h3>Getting Started</h3><p>Seeds, germination, choosing your first strain. The essential first steps without the overwhelm.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/lighting.html" class="topic-card"><div class="topic-icon">💡</div><h3>Lighting Explained</h3><p>LED vs HPS, DLI, photoperiods, light schedules — understand what your plant actually needs from light.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/soil.html" class="topic-card"><div class="topic-icon">🌍</div><h3>Soil & Growing Media</h3><p>Living soil, coco, perlite ratios, pH, and why your grow medium shapes everything downstream.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/nutrients.html" class="topic-card"><div class="topic-icon">🧪</div><h3>Nutrients & Feeding</h3><p>NPK ratios, deficiencies vs toxicities, organic vs synthetic — feeding your plant without guessing.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/training.html" class="topic-card"><div class="topic-icon">🌿</div><h3>Training Techniques</h3><p>LST, topping, SCROGs, mainlining — shape your plant to maximise yield and bud quality.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/terpenes.html" class="topic-card"><div class="topic-icon">🔬</div><h3>Terpenes & Cannabinoids</h3><p>The chemistry behind flavour, aroma, and effect. What THC, CBD, and terpenes actually do.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/harvest.html" class="topic-card"><div class="topic-icon">🌸</div><h3>Flowering & Harvest</h3><p>Reading trichomes, flush timing, when to chop — get the harvest timing right every time.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/curing.html" class="topic-card"><div class="topic-icon">🫙</div><h3>Drying & Curing</h3><p>Why the cure matters as much as the grow. Temperature, humidity, jars, and patience.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/pests.html" class="topic-card"><div class="topic-icon">🐛</div><h3>Pests & Diseases</h3><p>Identifying and treating common threats — spider mites, fungus gnats, powdery mildew, and more.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/environment.html" class="topic-card"><div class="topic-icon">🌦️</div><h3>Climate & Environment</h3><p>VPD, temperature, humidity, airflow — creating the environment your plant thrives in.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/autoflowers.html" class="topic-card"><div class="topic-icon">🪴</div><h3>Autoflowers vs Photos</h3><p>The key differences, which to choose for your setup, and how to grow each correctly.</p><span class="topic-link">Read guide →</span></a>
+      <a href="topics/legal-sa.html" class="topic-card"><div class="topic-icon">⚖️</div><h3>SA Legal Landscape</h3><p>What you may legally do in South Africa today — personal use, home cultivation, and the current law.</p><span class="topic-link">Read guide →</span></a>
+    </div>
+  </section>
+
+  <!-- BEGINNER GUIDE -->
+  <section id="guide">
+    <div class="section-tag">Start Here</div>
+    <h2 class="section-title">The beginner's roadmap.</h2>
+    <p class="section-sub">Eight stages, in order. Follow these and you'll understand every decision a grower makes — from day one to jar.</p>
+    <div class="guide-steps reveal">
+      <div class="guide-step"><div class="step-num">01</div><div class="step-body"><h3>Choose Your Strain</h3><p>Autoflower or photoperiod? Indica, sativa, or hybrid? Your choice here shapes everything else — growth time, light needs, and final effect.</p></div></div>
+      <div class="guide-step"><div class="step-num">02</div><div class="step-body"><h3>Germinate Your Seed</h3><p>Paper towel, glass of water, or straight to soil — getting the taproot out safely without stressing a seed that has never seen light.</p></div></div>
+      <div class="guide-step"><div class="step-num">03</div><div class="step-body"><h3>Set Up Your Environment</h3><p>Light, airflow, temperature, and humidity. Your grow space needs to hit specific targets before the plant goes in — not after problems start.</p></div></div>
+      <div class="guide-step"><div class="step-num">04</div><div class="step-body"><h3>Seedling Stage</h3><p>Gentle light, high humidity, minimal water. The seedling is fragile — your job is to do less, not more, and let it establish roots.</p></div></div>
+      <div class="guide-step"><div class="step-num">05</div><div class="step-body"><h3>Vegetative Growth</h3><p>Your plant builds its structure here. More light, more water, and optional training to shape the canopy for maximum bud sites later.</p></div></div>
+      <div class="guide-step"><div class="step-num">06</div><div class="step-body"><h3>Flowering Stage</h3><p>Buds form and fatten over 7–11 weeks. Environment stability matters most here — stress during flower directly costs you quality and yield.</p></div></div>
+      <div class="guide-step"><div class="step-num">07</div><div class="step-body"><h3>Harvest at the Right Time</h3><p>Read the trichomes under a loupe or microscope. Milky and amber trichomes on the buds — not the sugar leaves — tell you when to chop.</p></div></div>
+      <div class="guide-step"><div class="step-num">08</div><div class="step-body"><h3>Dry, Cure & Enjoy</h3><p>The final stage most beginners rush. A slow dry and a 4–8 week cure in sealed glass jars transforms good buds into exceptional ones.</p></div></div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <div class="section-tag">Video Library</div>
+    <h2 class="section-title">Watch and learn.</h2>
+    <p class="section-sub">Hand-picked educational videos from established growers, covering every stage of the grow.</p>
+    <div class="video-grid reveal">
+      <div class="video-card">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/QeHyEcyTedc" title="Germinating & Planting Cannabis Seeds" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-info"><h4>Germinating & Planting Cannabis Seeds</h4><p>Step-by-step tutorial for getting your seeds started right.</p><span class="video-level">Beginner</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/27EbdlH9RrA" title="Cannabis Seed Germination Tutorial" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-info"><h4>Seed Germination, Explained Properly</h4><p>Veteran breeder Mel Frank walks through germination fundamentals.</p><span class="video-level">Beginner</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/91gFMBYU4QI" title="The Quickstart Guide to Grow Cannabis" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-info"><h4>Quickstart Guide to Growing Cannabis</h4><p>A complete step-by-step guide from seed to harvest, indoors.</p><span class="video-level">Beginner</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/sp9mSrFDrtU" title="Start to Finish Cannabis Grow Guide" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-info"><h4>Beginner-Friendly Full Grow Guide</h4><p>Another full-cycle walkthrough, useful for comparing approaches.</p><span class="video-level">Beginner</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/fIjfzPt0nQI" title="Seedling Stage Guide for Beginners" allowfullscreen loading="lazy"></iframe></div>
+        <div class="video-info"><h4>Seedling Stage: A Beginner's Guide</h4><p>What to expect and how to care for cannabis seedlings indoors.</p><span class="video-level">Beginner</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section id="glossary">
+    <div class="section-tag">Glossary</div>
+    <h2 class="section-title">Know the terms.</h2>
+    <p class="section-sub">Plain-English definitions for every term you'll encounter as a grower. Search by keyword.</p>
+    <div class="glossary-search-wrap">
+      <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      <input class="glossary-search" id="glossarySearch" type="text" placeholder="Search terms..." oninput="filterGlossary()" />
+    </div>
+    <div class="glossary-list reveal" id="glossaryList">
+      <div class="glossary-item"><span class="glossary-term">Autoflower</span><span class="glossary-def">A cannabis plant that flowers based on age rather than light cycle — typically beginning flower around day 30–40 regardless of how many hours of light it receives per day.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Canopy</span><span class="glossary-def">The uppermost layer of leaves and bud sites on a plant. Managing canopy height and evenness is key to getting uniform light distribution across all your bud sites.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Curing</span><span class="glossary-def">The post-drying process of storing trimmed buds in sealed glass jars to break down chlorophyll, stabilise terpenes, and improve flavour, aroma, and smoothness over 4–8 weeks.</span></div>
+      <div class="glossary-item"><span class="glossary-term">DLI</span><span class="glossary-def">Daily Light Integral — the total amount of photosynthetically active light your plant receives over a full 24 hours. A more accurate measure of light than intensity alone.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Flush</span><span class="glossary-def">Running plain, pH-adjusted water through your medium in the final weeks of flower to clear residual nutrients. Debated in organic growing where living soil self-regulates.</span></div>
+      <div class="glossary-item"><span class="glossary-term">LST</span><span class="glossary-def">Low Stress Training — bending and tying branches to create a flatter, wider canopy that exposes more bud sites to direct light without cutting or damaging the plant.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Photoperiod</span><span class="glossary-def">A cannabis plant that switches from vegetative growth to flowering in response to a change in the daily light cycle — typically triggered by 12 hours of uninterrupted darkness.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Perlite</span><span class="glossary-def">A volcanic glass material added to soil to improve aeration and drainage. Creates air pockets that prevent compaction and give roots access to oxygen.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Terpenes</span><span class="glossary-def">Aromatic compounds produced in the trichomes of cannabis that create its distinct flavours and aromas — and interact with cannabinoids to influence its effects.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Trichomes</span><span class="glossary-def">The tiny crystal-like structures on buds and sugar leaves that produce and store cannabinoids (THC, CBD) and terpenes. Trichome colour indicates harvest readiness.</span></div>
+      <div class="glossary-item"><span class="glossary-term">VPD</span><span class="glossary-def">Vapour Pressure Deficit — a measurement combining temperature and humidity that indicates how hard your plant is working to push moisture through its leaves. Different growth stages need different VPD targets.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Worm Castings</span><span class="glossary-def">The excrement of earthworms — a slow-release organic fertiliser rich in microbes, enzymes, and plant-available nutrients. Adds nutrition and biological life to your soil.</span></div>
+    </div>
+  </section>
+
+  <script src="site.js"></script>
+  <script>
+    renderNav('home');
+    renderFooter();
+    initScrollReveal();
+
+    function filterGlossary() {
+      const q = document.getElementById('glossarySearch').value.toLowerCase();
+      document.querySelectorAll('.glossary-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
