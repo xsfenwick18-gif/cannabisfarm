@@ -10,10 +10,10 @@ function renderNav(activePage) {
       <li class="nav-dropdown">
         <span class="nav-dropdown-toggle">Growing</span>
         <ul class="nav-dropdown-menu">
-          <li><a href="${BASE}index.html#topics">Topics</a></li>
-          <li><a href="${BASE}index.html#guide">Beginner Guide</a></li>
-          <li><a href="${BASE}index.html#videos">Videos</a></li>
-          <li><a href="${BASE}index.html#glossary">Glossary</a></li>
+          <li><a href="${BASE}growing.html#topics">Topics</a></li>
+          <li><a href="${BASE}growing.html#guide">Beginner Guide</a></li>
+          <li><a href="${BASE}growing.html#videos">Videos</a></li>
+          <li><a href="${BASE}growing.html#glossary">Glossary</a></li>
         </ul>
       </li>
       <li class="nav-dropdown">
