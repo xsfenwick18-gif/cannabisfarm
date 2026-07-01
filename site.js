@@ -7,10 +7,25 @@ function renderNav(activePage) {
   nav.innerHTML = `
     <a href="${BASE}index.html" class="nav-logo">Cannabis<span>Farm</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="${BASE}index.html#topics" class="${activePage==='topics'?'active':''}">Topics</a></li>
-      <li><a href="${BASE}index.html#guide" class="${activePage==='guide'?'active':''}">Beginner Guide</a></li>
-      <li><a href="${BASE}index.html#videos" class="${activePage==='videos'?'active':''}">Videos</a></li>
-      <li><a href="${BASE}index.html#glossary" class="${activePage==='glossary'?'active':''}">Glossary</a></li>
+      <li class="nav-dropdown">
+        <span class="nav-dropdown-toggle">Growing</span>
+        <ul class="nav-dropdown-menu">
+          <li><a href="${BASE}index.html#topics">Topics</a></li>
+          <li><a href="${BASE}index.html#guide">Beginner Guide</a></li>
+          <li><a href="${BASE}index.html#videos">Videos</a></li>
+          <li><a href="${BASE}index.html#glossary">Glossary</a></li>
+        </ul>
+      </li>
+      <li class="nav-dropdown">
+        <span class="nav-dropdown-toggle">Explore</span>
+        <ul class="nav-dropdown-menu">
+          <li><a href="${BASE}blog.html" class="${activePage==='blog'?'active':''}">Blog</a></li>
+          <li><a href="${BASE}history.html" class="${activePage==='history'?'active':''}">History & Culture</a></li>
+          <li><a href="${BASE}medical.html" class="${activePage==='medical'?'active':''}">Medical</a></li>
+          <li><a href="${BASE}science-lab.html" class="${activePage==='science-lab'?'active':''}">Science & Lab</a></li>
+          <li><a href="${BASE}strains.html" class="${activePage==='strains'?'active':''}">Strains</a></li>
+        </ul>
+      </li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -23,6 +38,17 @@ function renderNav(activePage) {
   });
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const parent = toggle.closest('.nav-dropdown');
+      document.querySelectorAll('.nav-dropdown').forEach(d => { if (d !== parent) d.classList.remove('open'); });
+      parent.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
   });
 }
 
