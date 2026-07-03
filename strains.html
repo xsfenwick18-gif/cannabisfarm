@@ -4,38 +4,176 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strains – Cannabis Farm</title>
-  <meta name="description" content="Strain profiles, genetics, and effects. Coming soon to Cannabis Farm." />
+  <meta name="description" content="Understand cannabis genetics — indica vs sativa vs hybrid, terpene profiles, lineage, and how to evaluate a strain before you grow or buy it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .soon-wrap { max-width: 720px; margin: 0 auto; padding: 70px 5% 100px; text-align: center; }
-    .soon-icon { font-size: 3rem; margin-bottom: 1.5rem; }
-    .soon-wrap p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero { min-height: 100vh; background: var(--green-deep); display: flex; align-items: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 50%, rgba(82,183,136,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 50% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%); pointer-events: none; }
+    .hero-logo-img { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 400px; height: auto; mix-blend-mode: lighten; opacity: 0.92; pointer-events: none; z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; }
+    .hero-eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-leaf); margin-bottom: 1.4rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green-leaf); }
+    .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.08; color: var(--white); letter-spacing: -0.02em; margin-bottom: 1.5rem; max-width: calc(100% - 130px); }
+    .hero h1 em { font-style: normal; color: var(--green-leaf); }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero .btn-outline { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85); }
+    .hero .btn-outline:hover { border-color: var(--green-leaf); color: var(--green-leaf); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    #topics { background: var(--section-alt); }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .topic-card { background: var(--white); border-radius: 8px; padding: 2rem; border: 1px solid rgba(45,106,79,0.1); position: relative; overflow: hidden; }
+    .topic-icon { width: 48px; height: 48px; background: var(--section-alt); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+    .topic-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-dark); }
+    .topic-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .topic-soon { display: inline-block; margin-top: 1.1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; background: rgba(82,183,136,0.12); color: var(--green-mid); }
+
+    #guide { background: var(--white); }
+    .guide-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .guide-step { border: 1px solid rgba(45,106,79,0.1); border-radius: 8px; padding: 1.75rem; transition: border-color 0.2s; }
+    .guide-step:hover, .guide-step[open] { border-color: rgba(82,183,136,0.35); }
+    .guide-step summary { display: flex; gap: 1.25rem; cursor: pointer; list-style: none; }
+    .guide-step summary::-webkit-details-marker { display: none; }
+    .guide-step summary::after { content: '+'; margin-left: auto; font-size: 1.3rem; color: var(--green-mid); flex-shrink: 0; padding-left: 0.5rem; }
+    .guide-step[open] summary::after { content: '−'; }
+    .step-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: rgba(82,183,136,0.2); line-height: 1; flex-shrink: 0; width: 44px; }
+    .guide-step:hover .step-num { color: var(--green-leaf); }
+    .step-body { min-width: 0; }
+    .step-body h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+    .step-extra { margin-top: 1.25rem; padding-top: 1.25rem; padding-left: 60px; border-top: 1px solid rgba(45,106,79,0.08); }
+    .step-tip { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+    #glossary { background: var(--section-alt); }
+    .glossary-search-wrap { position: relative; max-width: 480px; margin-bottom: 2.5rem; }
+    .glossary-search { width: 100%; padding: 0.85rem 1.2rem 0.85rem 3rem; border: 1.5px solid rgba(45,106,79,0.2); border-radius: 6px; font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark); background: var(--white); outline: none; }
+    .glossary-search:focus { border-color: var(--green-leaf); }
+    .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+    .glossary-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .glossary-item { padding: 1.25rem 1.5rem; border-radius: 6px; border: 1px solid rgba(45,106,79,0.1); background: var(--white); display: flex; gap: 1.5rem; align-items: baseline; }
+    .glossary-term { font-weight: 700; font-size: 0.95rem; color: var(--green-mid); min-width: 140px; flex-shrink: 0; }
+    .glossary-def { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .hero-logo-img { width: 110px; top: 80px; right: 3%; transform: none; opacity: 0.98; }
+      .hero-stats { gap: 1.5rem; }
+      .guide-steps { grid-template-columns: 1fr; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .step-extra { padding-left: 0; }
+      .glossary-item { flex-direction: column; gap: 0.5rem; }
+    }
   </style>
 </head>
 <body>
 
-  <section class="article-hero">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Strains</div>
-    <div class="section-tag">Strains</div>
-    <h1>Know your genetics.</h1>
-    <p class="lede">Strain profiles, lineage, effects, and what actually makes one cultivar different from another. A growing strain database is on its way.</p>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Strains</div>
+      <h1>Know your <em>genetics.</em></h1>
+      <p class="hero-sub">Strain profiles, lineage, and effects — and what actually makes one cultivar different from another, beyond the indica/sativa label on the packet.</p>
+      <div class="hero-actions">
+        <a href="#guide" class="btn-primary">How to Evaluate a Strain</a>
+        <a href="#topics" class="btn-outline">Browse Topics</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">6</div><div class="stat-label">Strain Topics</div></div>
+        <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+        <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
+      </div>
+    </div>
+    <img class="hero-logo-img" src="Logo-dark.webp" alt="Cannabis Farm Logo">
   </section>
 
-  <div class="soon-wrap">
-    <div class="soon-icon">🧬</div>
-    <p>This section is currently in development. Check back soon, or explore what's already live below.</p>
-    <a href="growing.html" class="btn-primary">Explore Growing</a>
-    <a href="index.html" class="btn-outline" style="margin-left: 1rem;">Back to Home</a>
-  </div>
+  <!-- TOPICS -->
+  <section id="topics">
+    <div class="section-tag">What You'll Learn</div>
+    <h2 class="section-title">Genetics, explained properly.</h2>
+    <p class="section-sub">Full guides on each topic are coming soon — here's what's on the way.</p>
+    <div class="topics-grid reveal">
+      <div class="topic-card"><div class="topic-icon">🧬</div><h3>Indica vs Sativa vs Hybrid</h3><p>Why this label tells you far less than you think — and what actually drives the effect you feel.</p><span class="topic-soon">Coming Soon</span></div>
+      <div class="topic-card"><div class="topic-icon">🌐</div><h3>Genetics & Lineage</h3><p>Landrace strains, hybrid breeding, and how a cultivar's family tree shapes what it becomes.</p><span class="topic-soon">Coming Soon</span></div>
+      <div class="topic-card"><div class="topic-icon">🌸</div><h3>Terpene Profiles & Effects</h3><p>The aromatic compounds that shape flavour and effect far more than THC% alone.</p><span class="topic-soon">Coming Soon</span></div>
+      <div class="topic-card"><div class="topic-icon">📊</div><h3>THC/CBD Ratios Explained</h3><p>Reading a lab sheet properly — what the numbers mean and what they don't tell you.</p><span class="topic-soon">Coming Soon</span></div>
+      <div class="topic-card"><div class="topic-icon">🏷️</div><h3>Reading a Strain Datasheet</h3><p>Breeder claims vs verified lab data — knowing what to trust before you buy seeds.</p><span class="topic-soon">Coming Soon</span></div>
+      <div class="topic-card"><div class="topic-icon">🎯</div><h3>Choosing for Your Setup</h3><p>Autoflower vs photoperiod genetics, and matching a strain to your actual grow space.</p><span class="topic-soon">Coming Soon</span></div>
+    </div>
+  </section>
+
+  <!-- EVALUATE GUIDE -->
+  <section id="guide">
+    <div class="section-tag">Start Here</div>
+    <h2 class="section-title">How to evaluate a strain.</h2>
+    <p class="section-sub">Six checks before you commit to a pack of seeds. Click any step for more detail.</p>
+    <div class="guide-steps reveal">
+      <details class="guide-step">
+        <summary><div class="step-num">01</div><div class="step-body"><h3>Define Your Goal</h3><p>Effect, yield, or grow time? Be honest about what you actually want before you fall for marketing names.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: write down your top priority in one word (relax, energise, yield, speed) before browsing seedbanks — it filters out 90% of the noise.</p></div>
+      </details>
+      <details class="guide-step">
+        <summary><div class="step-num">02</div><div class="step-body"><h3>Check the Genetics</h3><p>Is it a stable line, or an unstable new cross? Established lineage means more predictable results.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: search the strain name plus "phenotype" or "lineage" — reputable breeders publish this openly.</p></div>
+      </details>
+      <details class="guide-step">
+        <summary><div class="step-num">03</div><div class="step-body"><h3>Read the Terpene Profile</h3><p>Terpenes predict the actual smell and feel far better than the strain name or category ever will.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: myrcene-dominant = sedative/relaxing; limonene/pinene-dominant = uplifting/energising — a useful shortcut.</p></div>
+      </details>
+      <details class="guide-step">
+        <summary><div class="step-num">04</div><div class="step-body"><h3>Check THC/CBD Ratio</h3><p>Look for verified lab data, not just the breeder's marketing claim on the packet.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: be skeptical of any strain claiming 30%+ THC with no lab certificate attached.</p></div>
+      </details>
+      <details class="guide-step">
+        <summary><div class="step-num">05</div><div class="step-body"><h3>Match to Your Setup</h3><p>Autoflower or photoperiod, indoor height limits, outdoor climate tolerance — genetics must fit your space.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: check the breeder's stated flowering time and finished height against your actual tent/space dimensions.</p></div>
+      </details>
+      <details class="guide-step">
+        <summary><div class="step-num">06</div><div class="step-body"><h3>Verify the Breeder</h3><p>Reputable seedbanks with a track record beat an unknown source every time — germination rate depends on it.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: check grower forums for real germination-rate reports before buying from a new or unfamiliar breeder.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section id="glossary">
+    <div class="section-tag">Glossary</div>
+    <h2 class="section-title">Know the terms.</h2>
+    <p class="section-sub">Plain-English definitions for strain and genetics terminology. Search by keyword.</p>
+    <div class="glossary-search-wrap">
+      <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      <input class="glossary-search" id="glossarySearch" type="text" placeholder="Search terms..." oninput="filterGlossary()" />
+    </div>
+    <div class="glossary-list reveal" id="glossaryList">
+      <div class="glossary-item"><span class="glossary-term">Cultivar</span><span class="glossary-def">A cultivated variety of cannabis bred and selected for specific traits — the more accurate term for what's casually called a "strain."</span></div>
+      <div class="glossary-item"><span class="glossary-term">Landrace</span><span class="glossary-def">A cannabis population that developed naturally in a specific region over generations, without human hybridisation — the genetic ancestors of most modern strains.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Phenotype</span><span class="glossary-def">The observable traits (smell, structure, potency) an individual plant expresses — plants from the same seed pack can show different phenotypes.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Genotype</span><span class="glossary-def">The underlying genetic code of a plant, which determines the range of possible phenotypes it could express.</span></div>
+      <div class="glossary-item"><span class="glossary-term">F1 Hybrid</span><span class="glossary-def">The first-generation offspring of two distinct parent lines, often showing hybrid vigour — bred for consistency.</span></div>
+      <div class="glossary-item"><span class="glossary-term">IBL</span><span class="glossary-def">Inbred Line — a strain stabilised over many generations to breed true, producing consistent, predictable offspring.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Terpene Profile</span><span class="glossary-def">The specific combination and ratio of aromatic compounds in a strain, which shapes its smell, flavour, and contributes to its effect.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Entourage Effect</span><span class="glossary-def">The theory that cannabinoids and terpenes work together synergistically, producing effects different from any single compound alone.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Hybrid Vigour</span><span class="glossary-def">The tendency for a cross between two distinct genetic lines to outperform either parent in traits like yield or resilience.</span></div>
+      <div class="glossary-item"><span class="glossary-term">Chemovar</span><span class="glossary-def">A classification based on a plant's chemical profile (cannabinoids and terpenes) rather than its name or reported lineage — considered more scientifically accurate than "strain."</span></div>
+    </div>
+  </section>
 
   <script src="site.js"></script>
   <script>
     renderNav('strains');
     renderFooter();
     initScrollReveal();
+
+    function filterGlossary() {
+      const q = document.getElementById('glossarySearch').value.toLowerCase();
+      document.querySelectorAll('.glossary-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
