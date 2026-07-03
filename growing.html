@@ -92,6 +92,16 @@
     .guide-step { display: flex; gap: 1.25rem; padding: 1.75rem; border-radius: 8px; border: 1px solid rgba(45,106,79,0.1); transition: border-color 0.2s; }
     .guide-step:hover { border-color: rgba(82,183,136,0.35); }
     .step-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: rgba(82,183,136,0.2); line-height: 1; flex-shrink: 0; width: 44px; transition: color 0.2s; }
+   .guide-step { cursor: pointer; }
+    .guide-step summary { display: flex; gap: 1.25rem; cursor: pointer; list-style: none; }
+    .guide-step summary::-webkit-details-marker { display: none; }
+    .guide-step summary::after { content: '+'; margin-left: auto; font-size: 1.3rem; color: var(--green-mid); flex-shrink: 0; padding-left: 0.5rem; }
+    .guide-step[open] summary::after { content: '−'; }
+    .step-extra { margin-top: 1.25rem; padding-top: 1.25rem; padding-left: 60px; border-top: 1px solid rgba(45,106,79,0.08); }
+    .step-video-links { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.8rem; }
+    .step-video-links a { font-size: 0.82rem; color: var(--green-mid); font-weight: 600; }
+    .step-video-links a:hover { color: var(--green-forest); }
+    .step-tip { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
     .guide-step:hover .step-num { color: var(--green-leaf); }
     .step-body h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
     .step-body p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
@@ -191,57 +201,68 @@
   <section id="guide">
     <div class="section-tag">Start Here</div>
     <h2 class="section-title">The beginner's roadmap.</h2>
-    <p class="section-sub">Eight stages, in order. Follow these and you'll understand every decision a grower makes — from day one to jar.</p>
+    <p class="section-sub">Eight stages, in order. Click any stage to see the details — and watch a video where available.</p>
+
+    <a href="https://www.youtube.com/watch?v=z7demnmZBsU" target="_blank" rel="noopener" class="video-card" style="max-width:420px; margin-bottom:2.5rem;">
+      <div class="video-thumb"><img src="https://img.youtube.com/vi/z7demnmZBsU/hqdefault.jpg" alt="A General Overview of Growing Cannabis"><span class="play-icon">▶</span></div>
+      <div class="video-info"><h4>Watch first: the full grow cycle overview</h4><p>See the big picture before diving into each stage below.</p></div>
+    </a>
+
     <div class="guide-steps reveal">
-      <div class="guide-step"><div class="step-num">01</div><div class="step-body"><h3>Choose Your Strain</h3><p>Autoflower or photoperiod? Indica, sativa, or hybrid? Your choice here shapes everything else — growth time, light needs, and final effect.</p></div></div>
-      <div class="guide-step"><div class="step-num">02</div><div class="step-body"><h3>Germinate Your Seed</h3><p>Paper towel, glass of water, or straight to soil — getting the taproot out safely without stressing a seed that has never seen light.</p></div></div>
-      <div class="guide-step"><div class="step-num">03</div><div class="step-body"><h3>Set Up Your Environment</h3><p>Light, airflow, temperature, and humidity. Your grow space needs to hit specific targets before the plant goes in — not after problems start.</p></div></div>
-      <div class="guide-step"><div class="step-num">04</div><div class="step-body"><h3>Seedling Stage</h3><p>Gentle light, high humidity, minimal water. The seedling is fragile — your job is to do less, not more, and let it establish roots.</p></div></div>
-      <div class="guide-step"><div class="step-num">05</div><div class="step-body"><h3>Vegetative Growth</h3><p>Your plant builds its structure here. More light, more water, and optional training to shape the canopy for maximum bud sites later.</p></div></div>
-      <div class="guide-step"><div class="step-num">06</div><div class="step-body"><h3>Flowering Stage</h3><p>Buds form and fatten over 7–11 weeks. Environment stability matters most here — stress during flower directly costs you quality and yield.</p></div></div>
-      <div class="guide-step"><div class="step-num">07</div><div class="step-body"><h3>Harvest at the Right Time</h3><p>Read the trichomes under a loupe or microscope. Milky and amber trichomes on the buds — not the sugar leaves — tell you when to chop.</p></div></div>
-      <div class="guide-step"><div class="step-num">08</div><div class="step-body"><h3>Dry, Cure & Enjoy</h3><p>The final stage most beginners rush. A slow dry and a 4–8 week cure in sealed glass jars transforms good buds into exceptional ones.</p></div></div>
+      <details class="guide-step">
+        <summary><div class="step-num">01</div><div class="step-body"><h3>Choose Your Strain</h3><p>Autoflower or photoperiod? Indica, sativa, or hybrid? Your choice here shapes everything else — growth time, light needs, and final effect.</p></div></summary>
+        <div class="step-extra">
+          <a class="video-card" href="https://www.youtube.com/watch?v=AHnd0P6sd8k" target="_blank" rel="noopener">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/AHnd0P6sd8k/hqdefault.jpg" alt="Choosing a Seed & Understanding Strains"><span class="play-icon">▶</span></div>
+            <div class="video-info"><h4>Choosing a Seed & Understanding Strains</h4><p>How to pick the right genetics for your grow.</p></div>
+          </a>
+        </div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">02</div><div class="step-body"><h3>Germinate Your Seed</h3><p>Paper towel, glass of water, or straight to soil — getting the taproot out safely without stressing a seed that has never seen light.</p></div></summary>
+        <div class="step-extra">
+          <a class="video-card" href="https://www.youtube.com/watch?v=QeHyEcyTedc" target="_blank" rel="noopener">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/QeHyEcyTedc/hqdefault.jpg" alt="Germinating & Planting Cannabis Seeds"><span class="play-icon">▶</span></div>
+            <div class="video-info"><h4>Germinating & Planting Cannabis Seeds</h4><p>Step-by-step tutorial on starting your seeds right.</p></div>
+          </a>
+          <div class="step-video-links">
+            <a href="https://www.youtube.com/watch?v=27EbdlH9RrA" target="_blank" rel="noopener">→ Seed Germination, Explained Properly (Mel Frank)</a>
+            <a href="https://www.youtube.com/watch?v=IpOx4YGubNw" target="_blank" rel="noopener">→ The Germination Process</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">03</div><div class="step-body"><h3>Set Up Your Environment</h3><p>Light, airflow, temperature, and humidity. Your grow space needs to hit specific targets before the plant goes in — not after problems start.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: stabilise your tent/room for 24 hours before you germinate — chasing temperature swings with a plant already in there is much harder.</p></div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">04</div><div class="step-body"><h3>Seedling Stage</h3><p>Gentle light, high humidity, minimal water. The seedling is fragile — your job is to do less, not more, and let it establish roots.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: resist watering daily — a seedling's roots are tiny, and overwatering is the most common beginner mistake here.</p></div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">05</div><div class="step-body"><h3>Vegetative Growth</h3><p>Your plant builds its structure here. More light, more water, and optional training to shape the canopy for maximum bud sites later.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: any training (LST, topping) is easiest and least stressful early in veg, while stems are still flexible.</p></div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">06</div><div class="step-body"><h3>Flowering Stage</h3><p>Buds form and fatten over 7–11 weeks. Environment stability matters most here — stress during flower directly costs you quality and yield.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: avoid any big changes (light, feed, training) in the last 2 weeks — let the plant finish undisturbed.</p></div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">07</div><div class="step-body"><h3>Harvest at the Right Time</h3><p>Read the trichomes under a loupe or microscope. Milky and amber trichomes on the buds — not the sugar leaves — tell you when to chop.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: check trichomes on multiple buds around the plant, not just one — ripening isn't always even.</p></div>
+      </details>
+
+      <details class="guide-step">
+        <summary><div class="step-num">08</div><div class="step-body"><h3>Dry, Cure & Enjoy</h3><p>The final stage most beginners rush. A slow dry and a 4–8 week cure in sealed glass jars transforms good buds into exceptional ones.</p></div></summary>
+        <div class="step-extra"><p class="step-tip">💡 Tip: use a properly sized jar — too much empty air space speeds up terpene loss during cure.</p></div>
+      </details>
     </div>
-  </section>
-<section style="max-width: 720px; margin: 0 auto; padding: 60px 5% 20px; text-align:center;">
-  <div class="section-tag">Featured</div>
-  <h2 class="section-title">Watch the full journey: seed to harvest.</h2>
-  <p class="section-sub" style="margin-left:auto; margin-right:auto;">A complete time-lapse from first sprout to final harvest — see the whole growth cycle in one video</p>
-  <a href="https://www.youtube.com/watch?v=AeYtJtWzY-g&list=PLyL_o5aG3yssqFh9GwqVPr9gTkR2zjlou&index=9" target="_blank" rel="noopener" style="display:block; max-width:560px; margin:0 auto; border-radius:10px; overflow:hidden; position:relative; box-shadow:0 8px 32px rgba(13,34,24,0.12);">
-    <img src="https://img.youtube.com/vi/AeYtJtWzY-g/hqdefault.jpg" alt="Cannabis Seed to Harvest Full Time-Lapse 4k" style="width:100%; display:block;">
-    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center;">
-      <div style="width:60px; height:60px; background:rgba(255,255,255,0.92); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">▶</div>
-    </div>
-  </a>
-  <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">Cannabis Seed to Harvest Full Time-Lapse 4k</p>
-</section>
-  <!-- VIDEOS -->
-  <section id="videos">
-    <div class="section-tag">Video Library</div>
-    <h2 class="section-title">Watch and learn.</h2>
-    <p class="section-sub">Hand-picked educational videos from established growers, covering every stage of the grow.</p>
-    <div class="video-grid reveal">
-      <a class="video-card" href="https://www.youtube.com/watch?v=QeHyEcyTedc" target="_blank" rel="noopener noreferrer">
-  <div class="video-thumb"><img src="https://img.youtube.com/vi/QeHyEcyTedc/hqdefault.jpg" alt="Germinating & Planting Cannabis Seeds thumbnail"><span class="play-icon">▶</span></div>
-  <div class="video-info"><h4>Germinating & Planting Cannabis Seeds</h4><p>Step-by-step tutorial on starting your seeds right.</p></div>
-</a>
-     <a class="video-card" href="https://www.youtube.com/watch?v=27EbdlH9RrA" target="_blank" rel="noopener noreferrer">
-  <div class="video-thumb"><img src="https://img.youtube.com/vi/27EbdlH9RrA/hqdefault.jpg" alt="Seed Germination, Explained Properly thumbnail"><span class="play-icon">▶</span></div>
-  <div class="video-info"><h4>Seed Germination, Explained Properly</h4><p>Veteran breeder Mel Frank breaks down the science.</p></div>
-</a>
-      <a class="video-card" href="https://www.youtube.com/watch?v=z7demnmZBsU" target="_blank" rel="noopener">
-        <div class="video-thumb"><img src="https://img.youtube.com/vi/z7demnmZBsU/hqdefault.jpg" alt="A General Overview of Growing Cannabis" loading="lazy"><span class="play-icon">&#9654;</span></div>
-        <div class="video-info"><h4>A General Overview of Growing Cannabis</h4><p>The big picture of a full grow cycle, start to finish.</p><span class="video-level">Beginner</span></div>
-      </a>
-      <a class="video-card" href="https://www.youtube.com/watch?v=AHnd0P6sd8k" target="_blank" rel="noopener">
-        <div class="video-thumb"><img src="https://img.youtube.com/vi/AHnd0P6sd8k/hqdefault.jpg" alt="Choosing a Seed & Understanding Strains" loading="lazy"><span class="play-icon">&#9654;</span></div>
-        <div class="video-info"><h4>Choosing a Seed & Understanding Strains</h4><p>How to pick the right genetics for your grow.</p><span class="video-level">Beginner</span></div>
-      </a>
-      <a class="video-card" href="https://www.youtube.com/watch?v=IpOx4YGubNw" target="_blank" rel="noopener">
-        <div class="video-thumb"><img src="https://img.youtube.com/vi/IpOx4YGubNw/hqdefault.jpg" alt="The Germination Process" loading="lazy"><span class="play-icon">&#9654;</span></div>
-        <div class="video-info"><h4>The Germination Process</h4><p>Getting your seeds to sprout the right way.</p><span class="video-level">Beginner</span></div>
-      </a>
-  </div>
   </section>
 
   <!-- GLOSSARY -->
