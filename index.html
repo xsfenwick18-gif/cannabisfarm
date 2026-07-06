@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cannabis Farm – Cannabis Education</title>
+  <meta name="description" content="Free, honest cannabis education covering growing, medical, science, history, strains and more. South Africa based, globally relevant." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: flex;
+      align-items: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-split { position: absolute; inset: 0; display: flex; z-index: 0; }
+    .hero-split-img { flex: 1; background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(rgba(17,17,17,0.6), rgba(17,17,17,0.82)); z-index: 1; }
+    .hero-logo-img {
+      position: absolute;
+      right: 3%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 400px;
+      height: auto;
+      mix-blend-mode: lighten;
+      opacity: 0.92;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 640px; }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-leaf);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green-leaf); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      line-height: 1.12;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-leaf); }
+    .hero-signature { font-size: 0.9rem; color: rgba(255,255,255,0.45); font-style: italic; margin-bottom: 1.8rem; }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 500px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .hero .btn-outline { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85); }
+    .hero .btn-outline:hover { border-color: var(--green-leaf); color: var(--green-leaf); }
+    .scroll-hint { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.55); animation: bob 2s ease-in-out infinite; text-decoration: none; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    #explore { background: #f7f4ee; }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .topic-card {
+      background: var(--white); border-radius: 16px; padding: 2rem;
+      border: 1px solid rgba(45,106,79,0.1);
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden; display: block;
+    }
+    .topic-card.practical { border-top: 3px solid #8b6f47; }
+    .topic-card.education { border-top: 3px solid var(--green-mid); }
+    .topic-card:hover { box-shadow: 0 10px 28px rgba(91,74,52,0.12); transform: translateY(-4px); border-color: rgba(82,183,136,0.3); }
+    .topic-icon { width: 48px; height: 48px; background: var(--section-alt); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; transition: transform 0.25s; }
+    .topic-card:hover .topic-icon { transform: scale(1.08) rotate(-4deg); }
+    .topic-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-dark); }
+    .topic-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .topic-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.82rem; font-weight: 600; color: var(--green-mid); letter-spacing: 0.03em; text-transform: uppercase; }
+
+    @media (max-width: 768px) {
+      .hero-logo-img { width: 110px; top: 80px; right: 3%; transform: none; opacity: 0.98; }
+      .hero h1 { max-width: calc(100% - 130px); }
+      .hero-stats { gap: 1.5rem; }
+      .topics-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero" id="home">
+    <div class="hero-split">
+      <div class="hero-split-img" style="background-image:url('hero-physical.jpg')"></div>
+      <div class="hero-split-img" style="background-image:url('hero-education.jpg')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Cannabis Education</div>
+      <h1>How much do you <em>actually</em> know about cannabis?</h1>
+      <p class="hero-sub">Our aim is for you to grow smarter and understand deeper about cannabis, whether you're a newcomer or seasoned enthusiast. Explore six areas of honest, straightforward cannabis education — from growing your first plant to the science, history, and medicine behind it. South Africa based, globally relevant.</p>
+      <div class="hero-actions">
+        <a href="growing.html" class="btn-primary">Start with Growing</a>
+        <a href="#explore" class="btn-outline">See All Topics</a>
+        <a href="#explore" class="scroll-hint" aria-label="Scroll down">↓</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">All</div><div class="stat-label">About Cannabis</div></div>
+        <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+        <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
+      </div>
+    </div>
+    <img class="hero-logo-img" src="Logo-dark.webp" alt="Cannabis Farm Logo">
+  </section>
+
+  <section id="explore">
+    <div class="section-tag">Explore</div>
+    <h2 class="section-title">Six areas. One mission.</h2>
+    <p class="section-sub">Pick where you want to start — every section is built to be clear, honest, and genuinely useful.</p>
+    <div class="topics-grid reveal">
+      <a href="growing.html" class="topic-card practical">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b6f47" stroke-width="1.6"><path d="M12 2C9 6 6 10 6 14a6 6 0 0012 0c0-4-3-8-6-12z"/><path d="M12 14v8"/></svg></div>
+        <h3>Growing</h3>
+        <p>From your first seed to harvest and cure — lighting, soil, nutrients, training, and the full beginner roadmap.</p>
+        <span class="topic-link">Explore Growing →</span>
+      </a>
+      <a href="medical.html" class="topic-card education">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M6 4h12v16l-6-4-6 4z"/></svg></div>
+        <h3>Medical</h3>
+        <p>Conditions, uses, and dosing basics — clear, honest medical cannabis education. Coming soon.</p>
+        <span class="topic-link">Explore Medical →</span>
+      </a>
+      <a href="science-lab.html" class="topic-card education">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h3>Science & Lab</h3>
+        <p>Cannabinoids, terpenes, lab testing, and the research behind the plant. Coming soon.</p>
+        <span class="topic-link">Explore Science →</span>
+      </a>
+      <a href="history.html" class="topic-card education">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M4 19V5a2 2 0 012-2h12v18H6a2 2 0 01-2-2z"/><path d="M8 7h8M8 11h8"/></svg></div>
+        <h3>History & Culture</h3>
+        <p>Ancient use to modern law — cannabis across cultures and continents. Coming soon.</p>
+        <span class="topic-link">Explore History →</span>
+      </a>
+      <a href="strains.html" class="topic-card education">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M9 3c0 3 3 3 3 6s-3 3-3 6 3 3 3 6M15 3c0 3-3 3-3 6s3 3 3 6-3 3-3 6"/></svg></div>
+        <h3>Strains</h3>
+        <p>Genetics, lineage, and effects — know what makes one cultivar different from another. Coming soon.</p>
+        <span class="topic-link">Explore Strains →</span>
+      </a>
+      <a href="blog.html" class="topic-card education">
+        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div>
+        <h3>Blog</h3>
+        <p>News, updates, and ongoing writing on the cannabis world. Coming soon.</p>
+        <span class="topic-link">Explore Blog →</span>
+      </a>
+    </div>
+  </section>
+
+  <script src="site.js"></script>
+  <script>
+    renderNav('home');
+    renderFooter();
+    initScrollReveal();
+  </script>
+</body>
+</html>
