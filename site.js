@@ -5,7 +5,7 @@ const BASE = window.location.pathname.includes('/topics/') ? '../' : '';
 function renderNav(activePage) {
   const nav = document.createElement('nav');
   nav.innerHTML = `
-    <a href="${BASE}index.html" class="nav-logo">Cannabis<span>Farm</span></a>
+    <a href="${BASE}index.html" class="nav-logo"><img src="${BASE}Logo-dark.webp" alt="" class="nav-logo-img">Cannabis<span>Farm</span></a>
     <ul class="nav-links" id="navLinks">
       <li class="nav-dropdown">
         <span class="nav-dropdown-toggle">Growing</span>
