@@ -22,18 +22,6 @@
     .hero-split { position: absolute; inset: 0; display: flex; z-index: 0; }
     .hero-split-img { flex: 1; background-size: cover; background-position: center; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(rgba(17,17,17,0.6), rgba(17,17,17,0.82)); z-index: 1; }
-    .hero-logo-img {
-      position: absolute;
-      right: 3%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 400px;
-      height: auto;
-      mix-blend-mode: lighten;
-      opacity: 0.92;
-      pointer-events: none;
-      z-index: 2;
-    }
     .hero-content { position: relative; z-index: 2; max-width: 640px; }
     .hero-eyebrow {
       font-family: var(--font-mono);
@@ -86,8 +74,6 @@
     .topic-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.82rem; font-weight: 600; color: var(--green-mid); letter-spacing: 0.03em; text-transform: uppercase; }
 
     @media (max-width: 768px) {
-      .hero-logo-img { width: 110px; top: 80px; right: 3%; transform: none; opacity: 0.98; }
-      .hero h1 { max-width: calc(100% - 130px); }
       .hero-stats { gap: 1.5rem; }
       .topics-grid { grid-template-columns: 1fr; }
     }
@@ -116,7 +102,6 @@
         <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
       </div>
     </div>
-    <img class="hero-logo-img" src="Logo-dark.webp" alt="Cannabis Farm Logo">
   </section>
 
   <section id="explore">
