@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="google-site-verification" content="1MngOxcnV2dKROW9gvUWbUarp-gAyageZKic659Fkc4" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>History & Culture – Cannabis Farm</title>
   <meta name="description" content="From ancient use to modern law — the story of cannabis across cultures, continents, and centuries, including South Africa's own history with the plant." />
@@ -129,27 +128,27 @@
     </div>
 
     <div class="guide-steps reveal">
-      <details class="guide-step">
+      <details class="guide-step" id="step-ancient-use">
         <summary><div class="step-num">01</div><div class="step-body"><h3>Ancient Use</h3><p>Cannabis cultivation traces back thousands of years in Central Asia, used for fibre, food, medicine, and ritual long before it became controversial.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Archaeological evidence of cannabis use has been found in burial and ritual sites across ancient China and Central Asia, some dating back over 2,500 years.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-trade-routes-spread">
         <summary><div class="step-num">02</div><div class="step-body"><h3>Trade Routes & Spread</h3><p>Cannabis moved along ancient trade routes into the Middle East, Africa, and India, adapting into countless local medicinal and spiritual traditions.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 In India, cannabis (bhang) became embedded in religious festivals and Ayurvedic medicine — a tradition still practiced today.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-early-medical-use">
         <summary><div class="step-num">03</div><div class="step-body"><h3>Early Medical Use</h3><p>By the 1800s, cannabis extracts were common in Western pharmacies, prescribed for pain, convulsions, and a wide range of ailments.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Cannabis tinctures were listed in the United States Pharmacopeia for decades before prohibition began.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-criminalisation">
         <summary><div class="step-num">04</div><div class="step-body"><h3>Criminalisation</h3><p>The early-to-mid 20th century saw cannabis criminalised across much of the world, often driven more by politics than by medical evidence.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 The 1961 UN Single Convention on Narcotic Drugs pushed prohibition into a global standard, binding most member states.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-the-war-on-drugs">
         <summary><div class="step-num">05</div><div class="step-body"><h3>The War on Drugs</h3><p>From the 1970s onward, aggressive enforcement policy led to mass incarceration and deep social stigma that persists in many countries today.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 This era is widely credited with entrenching much of the misinformation about cannabis that took decades to unwind.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-legalisation-south-africa-today">
         <summary><div class="step-num">06</div><div class="step-body"><h3>Legalisation & South Africa Today</h3><p>From the 1990s medical wave to today's recreational reform — including South Africa's 2018 Constitutional Court ruling protecting private use, and the 2024 Cannabis for Private Purposes Act.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 South Africa's shift began with the 2018 Prince judgment, which found the criminalisation of private cannabis use and cultivation unconstitutional.</p></div>
       </details>
@@ -166,19 +165,20 @@
       <input class="glossary-search" id="glossarySearch" type="text" placeholder="Search terms..." oninput="filterGlossary()" />
     </div>
     <div class="glossary-list reveal" id="glossaryList">
-      <div class="glossary-item"><span class="glossary-term">Prohibition</span><span class="glossary-def">The period during which cannabis was made illegal to grow, possess, or use, enforced through criminal law rather than regulation.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Decriminalisation</span><span class="glossary-def">Removing criminal penalties for personal possession/use, without necessarily making sale or commercial supply legal.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Legalisation</span><span class="glossary-def">Full removal of legal prohibition, typically including a regulated framework for cultivation, sale, and taxation.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Prince Judgment (2018)</span><span class="glossary-def">The South African Constitutional Court ruling that decriminalised the private use, possession, and cultivation of cannabis by adults.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Cannabis for Private Purposes Act</span><span class="glossary-def">South African legislation (2024) that formalised the legal framework for private cannabis use and home cultivation following the Prince judgment.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Single Convention on Narcotic Drugs</span><span class="glossary-def">A 1961 United Nations treaty that classified cannabis as a controlled substance, shaping prohibition policy across most of the world for decades.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Hemp</span><span class="glossary-def">Cannabis grown specifically for fibre, seed, or low-THC industrial use — legally distinct from "marijuana" in many jurisdictions based on THC content.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Rastafari & Ganja</span><span class="glossary-def">Cannabis ("ganja") holds sacramental significance in the Rastafari faith, used in meditation and religious ritual since the movement's origins in Jamaica.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Schedule I / Schedule 7</span><span class="glossary-def">Drug classification categories used in various countries (e.g. US, SA) historically placing cannabis among the most restricted substances, often disputed as outdated.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Marijuana Tax Act (1937)</span><span class="glossary-def">Early US federal legislation that effectively criminalised cannabis through prohibitive taxation, widely seen as the start of formal US prohibition.</span></div>
+      <div class="glossary-item" id="glossary-prohibition"><span class="glossary-term">Prohibition</span><span class="glossary-def">The period during which cannabis was made illegal to grow, possess, or use, enforced through criminal law rather than regulation.</span></div>
+      <div class="glossary-item" id="glossary-decriminalisation"><span class="glossary-term">Decriminalisation</span><span class="glossary-def">Removing criminal penalties for personal possession/use, without necessarily making sale or commercial supply legal.</span></div>
+      <div class="glossary-item" id="glossary-legalisation"><span class="glossary-term">Legalisation</span><span class="glossary-def">Full removal of legal prohibition, typically including a regulated framework for cultivation, sale, and taxation.</span></div>
+      <div class="glossary-item" id="glossary-prince-judgment-2018"><span class="glossary-term">Prince Judgment (2018)</span><span class="glossary-def">The South African Constitutional Court ruling that decriminalised the private use, possession, and cultivation of cannabis by adults.</span></div>
+      <div class="glossary-item" id="glossary-cannabis-for-private-purposes-act"><span class="glossary-term">Cannabis for Private Purposes Act</span><span class="glossary-def">South African legislation (2024) that formalised the legal framework for private cannabis use and home cultivation following the Prince judgment.</span></div>
+      <div class="glossary-item" id="glossary-single-convention-on-narcotic-drugs"><span class="glossary-term">Single Convention on Narcotic Drugs</span><span class="glossary-def">A 1961 United Nations treaty that classified cannabis as a controlled substance, shaping prohibition policy across most of the world for decades.</span></div>
+      <div class="glossary-item" id="glossary-hemp"><span class="glossary-term">Hemp</span><span class="glossary-def">Cannabis grown specifically for fibre, seed, or low-THC industrial use — legally distinct from "marijuana" in many jurisdictions based on THC content.</span></div>
+      <div class="glossary-item" id="glossary-rastafari-ganja"><span class="glossary-term">Rastafari & Ganja</span><span class="glossary-def">Cannabis ("ganja") holds sacramental significance in the Rastafari faith, used in meditation and religious ritual since the movement's origins in Jamaica.</span></div>
+      <div class="glossary-item" id="glossary-schedule-i-schedule-7"><span class="glossary-term">Schedule I / Schedule 7</span><span class="glossary-def">Drug classification categories used in various countries (e.g. US, SA) historically placing cannabis among the most restricted substances, often disputed as outdated.</span></div>
+      <div class="glossary-item" id="glossary-marijuana-tax-act-1937"><span class="glossary-term">Marijuana Tax Act (1937)</span><span class="glossary-def">Early US federal legislation that effectively criminalised cannabis through prohibitive taxation, widely seen as the start of formal US prohibition.</span></div>
     </div>
   </section>
 
+  <script src="search-index.js"></script>
   <script src="site.js"></script>
   <script>
     renderNav('history');
