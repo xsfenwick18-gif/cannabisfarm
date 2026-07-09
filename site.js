@@ -6,32 +6,29 @@ function renderNav(activePage) {
   const nav = document.createElement('nav');
   nav.innerHTML = `
     <a href="${BASE}index.html" class="nav-logo"><img src="${BASE}nav-logo.png" alt="Cannabis Farm" class="nav-logo-icon">Cannabis<span>Farm</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li class="nav-dropdown">
-        <span class="nav-dropdown-toggle">Growing</span>
-        <ul class="nav-dropdown-menu">
-          <li><a href="${BASE}growing.html#topics">Topics</a></li>
-          <li><a href="${BASE}growing.html#guide">Beginner Guide</a></li>
-          <li><a href="${BASE}growing.html#glossary">Glossary</a></li>
-        </ul>
-      </li>
-      <li class="nav-dropdown">
-        <span class="nav-dropdown-toggle">Explore</span>
-        <ul class="nav-dropdown-menu">
-          <li><a href="${BASE}medical.html" class="${activePage==='medical'?'active':''}">Medical</a></li>
-          <li><a href="${BASE}science-lab.html" class="${activePage==='science-lab'?'active':''}">Science & Lab</a></li>
-          <li><a href="${BASE}history.html" class="${activePage==='history'?'active':''}">History & Culture</a></li>
-          <li><a href="${BASE}strains.html" class="${activePage==='strains'?'active':''}">Strains</a></li>
-          <li><a href="${BASE}blog.html" class="${activePage==='blog'?'active':''}">Blog</a></li>
-        </ul>
-      </li>
-    </ul>
-    <button class="nav-search-btn" id="navSearchBtn" aria-label="Search">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links" id="navLinks">
+        <li class="nav-dropdown">
+          <span class="nav-dropdown-toggle">Growing</span>
+          <ul class="nav-dropdown-menu">
+            <li><a href="${BASE}growing.html#topics">Topics</a></li>
+            <li><a href="${BASE}growing.html#guide">Beginner Guide</a></li>
+            <li><a href="${BASE}growing.html#glossary">Glossary</a></li>
+          </ul>
+        </li>
+        <li><a href="${BASE}medical.html" class="${activePage==='medical'?'active':''}">Medical</a></li>
+        <li><a href="${BASE}science-lab.html" class="${activePage==='science-lab'?'active':''}">Science & Lab</a></li>
+        <li><a href="${BASE}history.html" class="${activePage==='history'?'active':''}">History & Culture</a></li>
+        <li><a href="${BASE}strains.html" class="${activePage==='strains'?'active':''}">Strains</a></li>
+        <li><a href="${BASE}blog.html" class="${activePage==='blog'?'active':''}">Blog</a></li>
+      </ul>
+      <button class="nav-search-btn" id="navSearchBtn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   `;
   document.body.prepend(nav);
 
