@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="google-site-verification" content="1MngOxcnV2dKROW9gvUWbUarp-gAyageZKic659Fkc4" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strains – Cannabis Farm</title>
   <meta name="description" content="Understand cannabis genetics — indica vs sativa vs hybrid, terpene profiles, lineage, and how to evaluate a strain before you grow or buy it." />
@@ -98,7 +97,6 @@
         <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
       </div>
     </div>
-    <img class="hero-logo-img" src="Logo-dark.webp" alt="Cannabis Farm Logo">
   </section>
 
   <!-- TOPICS -->
@@ -129,27 +127,27 @@
     </div>
 
     <div class="guide-steps reveal">
-      <details class="guide-step">
+      <details class="guide-step" id="step-define-your-goal">
         <summary><div class="step-num">01</div><div class="step-body"><h3>Define Your Goal</h3><p>Effect, yield, or grow time? Be honest about what you actually want before you fall for marketing names.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: write down your top priority in one word (relax, energise, yield, speed) before browsing seedbanks — it filters out 90% of the noise.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-check-the-genetics">
         <summary><div class="step-num">02</div><div class="step-body"><h3>Check the Genetics</h3><p>Is it a stable line, or an unstable new cross? Established lineage means more predictable results.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: search the strain name plus "phenotype" or "lineage" — reputable breeders publish this openly.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-read-the-terpene-profile">
         <summary><div class="step-num">03</div><div class="step-body"><h3>Read the Terpene Profile</h3><p>Terpenes predict the actual smell and feel far better than the strain name or category ever will.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: myrcene-dominant = sedative/relaxing; limonene/pinene-dominant = uplifting/energising — a useful shortcut.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-check-thc-cbd-ratio">
         <summary><div class="step-num">04</div><div class="step-body"><h3>Check THC/CBD Ratio</h3><p>Look for verified lab data, not just the breeder's marketing claim on the packet.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: be skeptical of any strain claiming 30%+ THC with no lab certificate attached.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-match-to-your-setup">
         <summary><div class="step-num">05</div><div class="step-body"><h3>Match to Your Setup</h3><p>Autoflower or photoperiod, indoor height limits, outdoor climate tolerance — genetics must fit your space.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: check the breeder's stated flowering time and finished height against your actual tent/space dimensions.</p></div>
       </details>
-      <details class="guide-step">
+      <details class="guide-step" id="step-verify-the-breeder">
         <summary><div class="step-num">06</div><div class="step-body"><h3>Verify the Breeder</h3><p>Reputable seedbanks with a track record beat an unknown source every time — germination rate depends on it.</p></div></summary>
         <div class="step-extra"><p class="step-tip">💡 Tip: check grower forums for real germination-rate reports before buying from a new or unfamiliar breeder.</p></div>
       </details>
@@ -166,19 +164,20 @@
       <input class="glossary-search" id="glossarySearch" type="text" placeholder="Search terms..." oninput="filterGlossary()" />
     </div>
     <div class="glossary-list reveal" id="glossaryList">
-      <div class="glossary-item"><span class="glossary-term">Cultivar</span><span class="glossary-def">A cultivated variety of cannabis bred and selected for specific traits — the more accurate term for what's casually called a "strain."</span></div>
-      <div class="glossary-item"><span class="glossary-term">Landrace</span><span class="glossary-def">A cannabis population that developed naturally in a specific region over generations, without human hybridisation — the genetic ancestors of most modern strains.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Phenotype</span><span class="glossary-def">The observable traits (smell, structure, potency) an individual plant expresses — plants from the same seed pack can show different phenotypes.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Genotype</span><span class="glossary-def">The underlying genetic code of a plant, which determines the range of possible phenotypes it could express.</span></div>
-      <div class="glossary-item"><span class="glossary-term">F1 Hybrid</span><span class="glossary-def">The first-generation offspring of two distinct parent lines, often showing hybrid vigour — bred for consistency.</span></div>
-      <div class="glossary-item"><span class="glossary-term">IBL</span><span class="glossary-def">Inbred Line — a strain stabilised over many generations to breed true, producing consistent, predictable offspring.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Terpene Profile</span><span class="glossary-def">The specific combination and ratio of aromatic compounds in a strain, which shapes its smell, flavour, and contributes to its effect.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Entourage Effect</span><span class="glossary-def">The theory that cannabinoids and terpenes work together synergistically, producing effects different from any single compound alone.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Hybrid Vigour</span><span class="glossary-def">The tendency for a cross between two distinct genetic lines to outperform either parent in traits like yield or resilience.</span></div>
-      <div class="glossary-item"><span class="glossary-term">Chemovar</span><span class="glossary-def">A classification based on a plant's chemical profile (cannabinoids and terpenes) rather than its name or reported lineage — considered more scientifically accurate than "strain."</span></div>
+      <div class="glossary-item" id="glossary-cultivar"><span class="glossary-term">Cultivar</span><span class="glossary-def">A cultivated variety of cannabis bred and selected for specific traits — the more accurate term for what's casually called a "strain."</span></div>
+      <div class="glossary-item" id="glossary-landrace"><span class="glossary-term">Landrace</span><span class="glossary-def">A cannabis population that developed naturally in a specific region over generations, without human hybridisation — the genetic ancestors of most modern strains.</span></div>
+      <div class="glossary-item" id="glossary-phenotype"><span class="glossary-term">Phenotype</span><span class="glossary-def">The observable traits (smell, structure, potency) an individual plant expresses — plants from the same seed pack can show different phenotypes.</span></div>
+      <div class="glossary-item" id="glossary-genotype"><span class="glossary-term">Genotype</span><span class="glossary-def">The underlying genetic code of a plant, which determines the range of possible phenotypes it could express.</span></div>
+      <div class="glossary-item" id="glossary-f1-hybrid"><span class="glossary-term">F1 Hybrid</span><span class="glossary-def">The first-generation offspring of two distinct parent lines, often showing hybrid vigour — bred for consistency.</span></div>
+      <div class="glossary-item" id="glossary-ibl"><span class="glossary-term">IBL</span><span class="glossary-def">Inbred Line — a strain stabilised over many generations to breed true, producing consistent, predictable offspring.</span></div>
+      <div class="glossary-item" id="glossary-terpene-profile"><span class="glossary-term">Terpene Profile</span><span class="glossary-def">The specific combination and ratio of aromatic compounds in a strain, which shapes its smell, flavour, and contributes to its effect.</span></div>
+      <div class="glossary-item" id="glossary-entourage-effect"><span class="glossary-term">Entourage Effect</span><span class="glossary-def">The theory that cannabinoids and terpenes work together synergistically, producing effects different from any single compound alone.</span></div>
+      <div class="glossary-item" id="glossary-hybrid-vigour"><span class="glossary-term">Hybrid Vigour</span><span class="glossary-def">The tendency for a cross between two distinct genetic lines to outperform either parent in traits like yield or resilience.</span></div>
+      <div class="glossary-item" id="glossary-chemovar"><span class="glossary-term">Chemovar</span><span class="glossary-def">A classification based on a plant's chemical profile (cannabinoids and terpenes) rather than its name or reported lineage — considered more scientifically accurate than "strain."</span></div>
     </div>
   </section>
 
+  <script src="search-index.js"></script>
   <script src="site.js"></script>
   <script>
     renderNav('strains');
