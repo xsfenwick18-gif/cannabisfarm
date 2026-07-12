@@ -1,173 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cannabis Farm – Cannabis Education</title>
-  <meta name="description" content="Free, honest cannabis education covering growing, medical, science, history, strains and more. South Africa based, globally relevant." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .hero {
-      min-height: 100vh;
-      background: var(--green-deep);
-      display: flex;
-      align-items: center;
-      padding: 100px 5% 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-split { position: absolute; inset: 0; display: flex; z-index: 0; }
-    .hero-split-img { flex: 1; background-size: cover; background-position: center; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(rgba(17,17,17,0.6), rgba(17,17,17,0.82)); z-index: 1; }
-    .hero-logo-img {
-      position: absolute;
-      right: 3%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 400px;
-      height: auto;
-      mix-blend-mode: lighten;
-      opacity: 0.92;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 640px; }
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green-leaf);
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green-leaf); }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
-      line-height: 1.12;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .hero h1 em { font-style: italic; color: var(--green-leaf); }
-    .hero-signature { font-size: 0.9rem; color: rgba(255,255,255,0.45); font-style: italic; margin-bottom: 1.8rem; }
-    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 500px; line-height: 1.7; margin-bottom: 2.5rem; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .hero .btn-outline { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85); }
-    .hero .btn-outline:hover { border-color: var(--green-leaf); color: var(--green-leaf); }
-    .scroll-hint { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.55); animation: bob 2s ease-in-out infinite; text-decoration: none; }
-    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
-    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
-    .stat-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--white); line-height: 1; }
-    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlateStack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14161A;
+    --surface:#1C1F24;
+    --surface-raised:#24282F;
+    --text:#EDEDE9;
+    --text-muted:#8B909A;
+    --accent:#E8542A;
+    --accent-dim:#C4431E;
+    --success:#4FA97C;
+    --border:#2E333A;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  header{
+    padding:28px 20px 20px;
+    border-bottom:1px solid var(--border);
+  }
+  .wordmark{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    font-size:28px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .wordmark span{color:var(--accent);}
+  .day-label{
+    margin-top:6px;
+    font-family:'Oswald',sans-serif;
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .day-picker{
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .day-picker label{
+    font-family:'Oswald',sans-serif;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+  }
+  .day-picker select{
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:'Oswald',sans-serif;
+    font-size:14px;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .day-picker select:focus{outline:none; border-color:var(--accent);}
+  main{max-width:640px; margin:0 auto; padding:20px 16px;}
+  .rest-day{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--text-muted);
+  }
+  .rest-day .big{
+    font-family:'Oswald',sans-serif;
+    font-size:22px;
+    color:var(--text);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:8px;
+  }
+  .exercise-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .exercise-head{
+    padding:16px 16px 12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .exercise-name{
+    font-family:'Oswald',sans-serif;
+    font-size:17px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.4px;
+  }
+  .exercise-target{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--text-muted);
+  }
+  .sets-list{padding:0 16px 16px;}
+  .set-row{
+    display:grid;
+    grid-template-columns:28px 1fr 1fr 44px;
+    gap:8px;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .set-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--text-muted);
+    font-size:13px;
+  }
+  .set-row input{
+    background:var(--surface-raised);
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    font-size:15px;
+    padding:9px 10px;
+    width:100%;
+  }
+  .set-row input:focus{outline:none; border-color:var(--accent);}
+  .log-btn{
+    background:var(--accent);
+    border:none;
+    border-radius:6px;
+    color:var(--bg);
+    font-weight:700;
+    font-size:16px;
+    height:38px;
+    cursor:pointer;
+  }
+  .log-btn:disabled{background:var(--border); color:var(--text-muted); cursor:not-allowed;}
+  .set-row.done{
+    grid-template-columns:28px 1fr;
+  }
+  .set-row.done .set-num{color:var(--success);}
+  .done-summary{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--success);
+    font-size:14px;
+  }
+  .finish-section{
+    margin-top:24px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px;
+  }
+  .finish-section label{
+    display:block;
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:8px;
+  }
+  .finish-section textarea{
+    width:100%;
+    background:var(--surface-raised);
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    padding:10px;
+    min-height:70px;
+    resize:vertical;
+  }
+  .finish-btn{
+    margin-top:12px;
+    width:100%;
+    background:var(--accent);
+    border:none;
+    border-radius:6px;
+    color:var(--bg);
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-size:14px;
+    padding:12px;
+    cursor:pointer;
+  }
+  .toast{
+    position:fixed;
+    bottom:20px; left:50%;
+    transform:translateX(-50%);
+    background:var(--surface-raised);
+    border:1px solid var(--success);
+    color:var(--success);
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+    font-family:'Inter',sans-serif;
+    opacity:0;
+    transition:opacity 0.3s;
+    pointer-events:none;
+  }
+  .toast.show{opacity:1;}
 
-    #explore { background: #f7f4ee; }
-    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
-    .topic-card {
-      background: var(--white); border-radius: 16px; padding: 2rem;
-      border: 1px solid rgba(45,106,79,0.1);
-      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
-      position: relative; overflow: hidden; display: block;
-    }
-    .topic-card.practical { border-top: 3px solid #8b6f47; }
-    .topic-card.education { border-top: 3px solid var(--green-mid); }
-    .topic-card:hover { box-shadow: 0 10px 28px rgba(91,74,52,0.12); transform: translateY(-4px); border-color: rgba(82,183,136,0.3); }
-    .topic-icon { width: 48px; height: 48px; background: var(--section-alt); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; transition: transform 0.25s; }
-    .topic-card:hover .topic-icon { transform: scale(1.08) rotate(-4deg); }
-    .topic-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-dark); }
-    .topic-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
-    .topic-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.1rem; font-size: 0.82rem; font-weight: 600; color: var(--green-mid); letter-spacing: 0.03em; text-transform: uppercase; }
+  /* Rest timer overlay */
+  .rest-overlay{
+    position:fixed; inset:0;
+    background:rgba(20,22,26,0.97);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+  }
+  .rest-overlay.active{display:flex;}
+  .rest-label{
+    font-family:'Oswald',sans-serif;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    font-size:14px;
+    margin-bottom:20px;
+  }
+  .plate-ring{
+    position:relative;
+    width:220px; height:220px;
+  }
+  .plate-ring svg{transform:rotate(-90deg);}
+  .plate-ring .track{fill:none; stroke:var(--border); stroke-width:10;}
+  .plate-ring .progress{
+    fill:none; stroke:var(--accent); stroke-width:10;
+    stroke-linecap:round;
+    transition:stroke-dashoffset 1s linear;
+  }
+  .ring-groove{fill:none; stroke:var(--surface-raised); stroke-width:1;}
+  .ring-center{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+  }
+  .ring-time{
+    font-family:'JetBrains Mono',monospace;
+    font-size:40px; font-weight:700;
+  }
+  .next-up{
+    margin-top:22px;
+    text-align:center;
+    color:var(--text-muted);
+    font-size:14px;
+  }
+  .next-up b{color:var(--text); font-family:'Oswald',sans-serif; letter-spacing:0.5px;}
 
-    @media (max-width: 768px) {
-      .hero-logo-img { width: 110px; top: 80px; right: 3%; transform: none; opacity: 0.98; }
-      .hero h1 { max-width: calc(100% - 130px); }
-      .hero-stats { gap: 1.5rem; }
-      .topics-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  /* Nav tabs */
+  .nav-tabs{
+    display:flex;
+    gap:4px;
+    margin-top:18px;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-tab{
+    background:none;
+    border:none;
+    color:var(--text-muted);
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:10px 4px 12px;
+    margin-right:20px;
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+  }
+  .nav-tab.active{color:var(--text); border-bottom-color:var(--accent);}
+
+  /* Progress section */
+  .metrics-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+  }
+  .metrics-card h3{
+    font-family:'Oswald',sans-serif;
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:12px;
+  }
+  .metrics-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .metrics-grid .full{grid-column:1 / -1;}
+  .metrics-grid label{
+    display:block;
+    font-size:11px;
+    color:var(--text-muted);
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .metrics-grid input{
+    width:100%;
+    background:var(--surface-raised);
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    padding:8px 10px;
+  }
+  .metrics-grid input:focus{outline:none; border-color:var(--accent);}
+  .metrics-save{
+    width:100%;
+    background:var(--accent);
+    border:none;
+    border-radius:6px;
+    color:var(--bg);
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-size:13px;
+    padding:11px;
+    cursor:pointer;
+  }
+  .chart-select{
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:'Oswald',sans-serif;
+    font-size:13px;
+    text-transform:uppercase;
+    padding:8px 12px;
+    border-radius:6px;
+    margin-bottom:10px;
+    width:100%;
+  }
+  canvas{width:100%; height:auto; display:block;}
+  .empty-chart{
+    color:var(--text-muted);
+    font-size:13px;
+    text-align:center;
+    padding:30px 0;
+  }
+</style>
 </head>
 <body>
 
-  <section class="hero" id="home">
-    <div class="hero-split">
-      <div class="hero-split-img" style="background-image:url('hero-physical.jpg')"></div>
-      <div class="hero-split-img" style="background-image:url('hero-education.jpg')"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Cannabis Education</div>
-      <h1>How much do you <em>actually</em> know about cannabis?</h1>
-      <p class="hero-sub">Our aim is for you to grow smarter and understand deeper about cannabis, whether you're a newcomer or seasoned enthusiast. Explore six areas of honest, straightforward cannabis education — from growing your first plant to the science, history, and medicine behind it. South Africa based, globally relevant.</p>
-      <div class="hero-actions">
-        <a href="growing.html" class="btn-primary">Start with Growing</a>
-        <a href="#explore" class="btn-outline">See All Topics</a>
-        <a href="#explore" class="scroll-hint" aria-label="Scroll down">↓</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-num">All</div><div class="stat-label">About Cannabis</div></div>
-        <div><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
-        <div><div class="stat-num">SA</div><div class="stat-label">Based & Relevant</div></div>
-      </div>
-    </div>
-  </section>
+<header>
+  <div class="wordmark">PLATE<span>STACK</span></div>
+  <div class="day-label" id="dayLabel">Loading...</div>
+  <div class="day-picker">
+    <label for="daySelect">Vandag is:</label>
+    <select id="daySelect">
+      <option value="Upper A">Upper A — Tuesday</option>
+      <option value="Lower A">Lower A — Wednesday</option>
+      <option value="Upper B">Upper B — Thursday</option>
+      <option value="Lower B">Lower B — Friday</option>
+      <option value="Rest">Rest Day</option>
+    </select>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="tabWorkout">Workout</button>
+    <button class="nav-tab" id="tabProgress">Progress</button>
+  </div>
+</header>
 
-  <section id="explore">
-    <div class="section-tag">Explore</div>
-    <h2 class="section-title">Six areas. One mission.</h2>
-    <p class="section-sub">Pick where you want to start — every section is built to be clear, honest, and genuinely useful.</p>
-    <div class="topics-grid reveal">
-      <a href="growing.html" class="topic-card practical">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8b6f47" stroke-width="1.6"><path d="M12 2C9 6 6 10 6 14a6 6 0 0012 0c0-4-3-8-6-12z"/><path d="M12 14v8"/></svg></div>
-        <h3>Growing</h3>
-        <p>From your first seed to harvest and cure — lighting, soil, nutrients, training, and the full beginner roadmap.</p>
-        <span class="topic-link">Explore Growing →</span>
-      </a>
-      <a href="medical.html" class="topic-card education">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M6 4h12v16l-6-4-6 4z"/></svg></div>
-        <h3>Medical</h3>
-        <p>Conditions, uses, and dosing basics — clear, honest medical cannabis education. Coming soon.</p>
-        <span class="topic-link">Explore Medical →</span>
-      </a>
-      <a href="science-lab.html" class="topic-card education">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
-        <h3>Science & Lab</h3>
-        <p>Cannabinoids, terpenes, lab testing, and the research behind the plant. Coming soon.</p>
-        <span class="topic-link">Explore Science →</span>
-      </a>
-      <a href="history.html" class="topic-card education">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M4 19V5a2 2 0 012-2h12v18H6a2 2 0 01-2-2z"/><path d="M8 7h8M8 11h8"/></svg></div>
-        <h3>History & Culture</h3>
-        <p>Ancient use to modern law — cannabis across cultures and continents. Coming soon.</p>
-        <span class="topic-link">Explore History →</span>
-      </a>
-      <a href="strains.html" class="topic-card education">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><path d="M9 3c0 3 3 3 3 6s-3 3-3 6 3 3 3 6M15 3c0 3-3 3-3 6s3 3 3 6-3 3-3 6"/></svg></div>
-        <h3>Strains</h3>
-        <p>Genetics, lineage, and effects — know what makes one cultivar different from another. Coming soon.</p>
-        <span class="topic-link">Explore Strains →</span>
-      </a>
-      <a href="blog.html" class="topic-card education">
-        <div class="topic-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4f7942" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div>
-        <h3>Blog</h3>
-        <p>News, updates, and ongoing writing on the cannabis world. Coming soon.</p>
-        <span class="topic-link">Explore Blog →</span>
-      </a>
+<main id="main">
+  <div id="workoutView">
+    <div class="rest-day" id="restDayMsg" style="display:none">
+      <div class="big">Rest Day</div>
+      <div>No session scheduled today. Recovery is part of the program too.</div>
     </div>
-  </section>
+    <div id="exerciseList"></div>
 
-  <script src="search-index.js"></script>
-  <script src="site.js"></script>
-  <script>
-    renderNav('home');
-    renderFooter();
-    initScrollReveal();
-  </script>
+    <div class="finish-section" id="finishSection" style="display:none">
+      <label>Session Notes</label>
+      <textarea id="sessionNotes" placeholder="How did it feel? Anything to fix next time?"></textarea>
+      <button class="finish-btn" id="finishBtn">Finish Workout</button>
+    </div>
+  </div>
+
+  <div id="progressView" style="display:none">
+    <div class="metrics-card">
+      <h3>Log Body Metrics</h3>
+      <div class="metrics-grid">
+        <div class="full">
+          <label>Body Weight (kg)</label>
+          <input type="number" id="mWeight" inputmode="decimal" placeholder="71.0">
+        </div>
+        <div><label>Chest (cm)</label><input type="number" id="mChest" inputmode="decimal"></div>
+        <div><label>Waist (cm)</label><input type="number" id="mWaist" inputmode="decimal"></div>
+        <div><label>Arms (cm)</label><input type="number" id="mArms" inputmode="decimal"></div>
+        <div><label>Legs (cm)</label><input type="number" id="mLegs" inputmode="decimal"></div>
+      </div>
+      <button class="metrics-save" id="saveMetricsBtn">Save Today's Metrics</button>
+    </div>
+
+    <div class="metrics-card">
+      <h3>Body Weight Over Time</h3>
+      <canvas id="weightChart" width="600" height="220"></canvas>
+    </div>
+
+    <div class="metrics-card">
+      <h3>Lift Progress</h3>
+      <select class="chart-select" id="exerciseChartSelect"></select>
+      <canvas id="liftChart" width="600" height="220"></canvas>
+    </div>
+  </div>
+</main>
+
+<div class="rest-overlay" id="restOverlay">
+  <div class="rest-label">REST</div>
+  <div class="plate-ring">
+    <svg width="220" height="220" viewBox="0 0 220 220">
+      <circle class="track" cx="110" cy="110" r="95"></circle>
+      <circle class="progress" id="ringProgress" cx="110" cy="110" r="95"
+        stroke-dasharray="596.9" stroke-dashoffset="0"></circle>
+      <circle class="ring-groove" cx="110" cy="110" r="78"></circle>
+      <circle class="ring-groove" cx="110" cy="110" r="62"></circle>
+    </svg>
+    <div class="ring-center">
+      <div class="ring-time" id="ringTime">0:00</div>
+    </div>
+  </div>
+  <div class="next-up" id="nextUp"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ==== CONFIG ====
+const API_URL = "https://script.google.com/macros/s/AKfycbzoAopZn1rHAJcAfGgYxY64E1wxI-UQskitkmO9BnpOMCT95LeTtFNfL92TCRcDp5u5ig/exec";
+
+const BIG_LIFTS = [
+  "Smith flat bench press", "Hex bar deadlift", "Smith squat",
+  "Smith incline press", "Hex bar Romanian deadlift"
+];
+const REST_BIG = 150;   // 2.5 min
+const REST_SMALL = 75;  // 1.25 min
+
+const DAY_MAP = { 2: "Upper A", 3: "Lower A", 4: "Upper B", 5: "Lower B" };
+
+function todayDay(){
+  return DAY_MAP[new Date().getDay()] || "Rest";
+}
+function todayDate(){
+  return new Date().toISOString().slice(0,10);
+}
+
+let currentDay = todayDay();
+
+// Set the dropdown to today's auto-detected day on first load —
+// still fully editable, this is just a starting guess, not a lock.
+const daySelect = document.getElementById('daySelect');
+daySelect.value = currentDay;
+daySelect.addEventListener('change', () => {
+  currentDay = daySelect.value;
+  document.getElementById('exerciseList').innerHTML = '';
+  document.getElementById('restDayMsg').style.display = 'none';
+  document.getElementById('finishSection').style.display = 'none';
+  loadWorkout();
+});
+
+async function loadWorkout(){
+  const dayLabel = document.getElementById('dayLabel');
+  if(currentDay === "Rest"){
+    dayLabel.textContent = "REST DAY";
+    document.getElementById('restDayMsg').style.display = 'block';
+    return;
+  }
+  dayLabel.textContent = currentDay.toUpperCase() + " · " + new Date().toDateString();
+
+  const res = await fetch(`${API_URL}?day=${encodeURIComponent(currentDay)}`);
+  const exercises = await res.json();
+  renderExercises(exercises);
+  document.getElementById('finishSection').style.display = 'block';
+}
+
+function renderExercises(exercises){
+  const list = document.getElementById('exerciseList');
+  list.innerHTML = '';
+  exercises.forEach(ex => {
+    const card = document.createElement('div');
+    card.className = 'exercise-card';
+
+    const head = document.createElement('div');
+    head.className = 'exercise-head';
+    head.innerHTML = `<div class="exercise-name">${ex.exercise}</div>
+      <div class="exercise-target">${ex.targetSets} × ${ex.repLow}-${ex.repHigh}</div>`;
+    card.appendChild(head);
+
+    const setsWrap = document.createElement('div');
+    setsWrap.className = 'sets-list';
+
+    for(let i=1; i<=ex.targetSets; i++){
+      const row = document.createElement('div');
+      row.className = 'set-row';
+      row.innerHTML = `
+        <div class="set-num">${i}</div>
+        <input type="number" placeholder="kg" class="w-input" inputmode="decimal">
+        <input type="number" placeholder="reps" class="r-input" inputmode="numeric">
+        <button class="log-btn">✓</button>
+      `;
+      const btn = row.querySelector('.log-btn');
+      btn.addEventListener('click', () => logSet(ex, i, row));
+      setsWrap.appendChild(row);
+    }
+    card.appendChild(setsWrap);
+    list.appendChild(card);
+  });
+}
+
+async function logSet(ex, setNum, row){
+  const w = row.querySelector('.w-input').value;
+  const r = row.querySelector('.r-input').value;
+  if(!w || !r){ flashToast("Enter weight and reps first"); return; }
+
+  disableAllLogButtons(true);
+
+  await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'text/plain'},
+    body: JSON.stringify({
+      date: todayDate(),
+      day: currentDay,
+      exercise: ex.exercise,
+      set: setNum,
+      weight: w,
+      reps: r
+    })
+  });
+
+  row.classList.add('done');
+  row.innerHTML = `<div class="set-num">${setNum}</div><div class="done-summary">${w}kg × ${r} — logged</div>`;
+  flashToast("Set logged");
+
+  const restSeconds = BIG_LIFTS.includes(ex.exercise) ? REST_BIG : REST_SMALL;
+  startRestTimer(restSeconds, ex, setNum);
+}
+
+function disableAllLogButtons(state){
+  document.querySelectorAll('.log-btn').forEach(b => b.disabled = state);
+}
+
+function flashToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ==== Rest timer ====
+const CIRC = 2 * Math.PI * 95; // 596.9
+function startRestTimer(seconds, ex, setNum){
+  const overlay = document.getElementById('restOverlay');
+  const ring = document.getElementById('ringProgress');
+  const timeEl = document.getElementById('ringTime');
+  const nextUp = document.getElementById('nextUp');
+
+  nextUp.innerHTML = `Next: <b>${ex.exercise}</b> — Set ${setNum+1 <= ex.targetSets ? setNum+1 : '— next exercise'}`;
+  overlay.classList.add('active');
+
+  let remaining = seconds;
+  ring.style.strokeDasharray = CIRC;
+  ring.style.strokeDashoffset = 0;
+
+  const tick = () => {
+    const pct = remaining / seconds;
+    ring.style.strokeDashoffset = CIRC * (1 - pct);
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    timeEl.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+
+    if(remaining <= 0){
+      clearInterval(interval);
+      overlay.classList.remove('active');
+      disableAllLogButtons(false);
+      flashToast("Rest done — next set");
+      return;
+    }
+    remaining--;
+  };
+  tick();
+  const interval = setInterval(tick, 1000);
+}
+
+// ==== Finish workout ====
+document.getElementById('finishBtn').addEventListener('click', async () => {
+  const notes = document.getElementById('sessionNotes').value;
+  await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'text/plain'},
+    body: JSON.stringify({
+      date: todayDate(),
+      day: currentDay,
+      exercise: 'SESSION NOTES',
+      set: '',
+      weight: '',
+      reps: '',
+      notes: notes
+    })
+  });
+  flashToast("Session saved — nice work");
+  document.getElementById('sessionNotes').value = '';
+});
+
+loadWorkout();
+
+// ==== Tab switching ====
+const ALL_EXERCISES = [
+  "Smith flat bench press", "Lat pulldown", "Seated DB shoulder press", "DB row",
+  "Preacher curl", "Tricep pushdown", "Hex bar deadlift", "Smith squat",
+  "Leg extension", "Leg curl", "Calf raise", "Smith incline press",
+  "Low cable seated row", "Dips", "Face pulls", "Cable lateral raise",
+  "DB hammer curl", "Hex bar Romanian deadlift"
+];
+
+const tabWorkout = document.getElementById('tabWorkout');
+const tabProgress = document.getElementById('tabProgress');
+const workoutView = document.getElementById('workoutView');
+const progressView = document.getElementById('progressView');
+
+tabWorkout.addEventListener('click', () => {
+  tabWorkout.classList.add('active');
+  tabProgress.classList.remove('active');
+  workoutView.style.display = 'block';
+  progressView.style.display = 'none';
+});
+
+tabProgress.addEventListener('click', () => {
+  tabProgress.classList.add('active');
+  tabWorkout.classList.remove('active');
+  progressView.style.display = 'block';
+  workoutView.style.display = 'none';
+  loadProgressView();
+});
+
+function loadProgressView(){
+  const select = document.getElementById('exerciseChartSelect');
+  if(select.options.length === 0){
+    ALL_EXERCISES.forEach(ex => {
+      const opt = document.createElement('option');
+      opt.value = ex; opt.textContent = ex;
+      select.appendChild(opt);
+    });
+    select.addEventListener('change', () => loadLiftChart(select.value));
+  }
+  loadWeightChart();
+  loadLiftChart(select.value);
+}
+
+// ==== Save body metrics ====
+document.getElementById('saveMetricsBtn').addEventListener('click', async () => {
+  const weight = document.getElementById('mWeight').value;
+  const chest = document.getElementById('mChest').value;
+  const waist = document.getElementById('mWaist').value;
+  const arms = document.getElementById('mArms').value;
+  const legs = document.getElementById('mLegs').value;
+
+  if(!weight && !chest && !waist && !arms && !legs){
+    flashToast("Enter at least one measurement");
+    return;
+  }
+
+  await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'text/plain'},
+    body: JSON.stringify({
+      type: 'bodymetric',
+      date: todayDate(),
+      weight, chest, waist, arms, legs
+    })
+  });
+
+  flashToast("Metrics saved");
+  ['mWeight','mChest','mWaist','mArms','mLegs'].forEach(id => document.getElementById(id).value = '');
+  loadWeightChart();
+});
+
+// ==== Charts ====
+async function loadWeightChart(){
+  const res = await fetch(`${API_URL}?action=bodymetrics`);
+  const data = await res.json();
+  const points = data.filter(d => d.weight !== '' && d.weight !== null)
+    .map(d => ({ date: d.date, value: Number(d.weight) }));
+  drawLineChart('weightChart', points, 'kg');
+}
+
+async function loadLiftChart(exerciseName){
+  if(!exerciseName) return;
+  const res = await fetch(`${API_URL}?action=exercisehistory&exercise=${encodeURIComponent(exerciseName)}`);
+  const data = await res.json();
+  const points = data.map(d => ({ date: d.date, value: Number(d.topWeight) }));
+  drawLineChart('liftChart', points, 'kg');
+}
+
+function drawLineChart(canvasId, points, unit){
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  if(points.length < 2){
+    ctx.fillStyle = '#8B909A';
+    ctx.font = '13px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText('Log a few sessions to see progress here', w/2, h/2);
+    return;
+  }
+
+  const pad = {top:20, right:20, bottom:30, left:44};
+  const values = points.map(p => p.value);
+  const minV = Math.min(...values) * 0.95;
+  const maxV = Math.max(...values) * 1.05;
+  const plotW = w - pad.left - pad.right;
+  const plotH = h - pad.top - pad.bottom;
+
+  const xFor = i => pad.left + (i / (points.length - 1)) * plotW;
+  const yFor = v => pad.top + plotH - ((v - minV) / (maxV - minV || 1)) * plotH;
+
+  ctx.strokeStyle = '#2E333A';
+  ctx.lineWidth = 1;
+  for(let i=0; i<=3; i++){
+    const y = pad.top + (plotH/3)*i;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w-pad.right, y); ctx.stroke();
+  }
+
+  ctx.strokeStyle = '#E8542A';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  points.forEach((p, i) => {
+    const x = xFor(i), y = yFor(p.value);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  ctx.fillStyle = '#E8542A';
+  points.forEach((p, i) => {
+    ctx.beginPath();
+    ctx.arc(xFor(i), yFor(p.value), 3.5, 0, Math.PI*2);
+    ctx.fill();
+  });
+
+  ctx.fillStyle = '#8B909A';
+  ctx.font = '11px JetBrains Mono';
+  ctx.textAlign = 'right';
+  ctx.fillText(maxV.toFixed(1)+unit, pad.left-6, pad.top+4);
+  ctx.fillText(minV.toFixed(1)+unit, pad.left-6, pad.top+plotH);
+  ctx.textAlign = 'left';
+  ctx.fillText(points[0].date, pad.left, h-8);
+  ctx.textAlign = 'right';
+  ctx.fillText(points[points.length-1].date, w-pad.right, h-8);
+}
+</script>
+
 </body>
 </html>
